@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="main" id="root">
+        <div class="class1"></div>
+        <div class="class2"></div>
+        <div class="class3"></div>
+        <div class="class4"></div>
+        <div class="class5"></div>
+        <div class="my-class"></div>
+    </div>
+
+    <script>
+
+        // Урок 1. Функциональный Javascript
+        // Домашнее задание
+
+        // 1) Дан массив const arr = [1, 5, 7, 9] с помощью Math.min и spread оператора, найти минимальное число в массиве, решение задание должно состоять из одной строки
+
+        console.log(Math.min(...[1, 5, 7, 9]));
+
+
+        // 2) Напишите функцию createCounter, которая создает счетчик и возвращает объект с двумя методами: increment и decrement. Метод increment должен увеличивать значение счетчика на 1, а метод decrement должен уменьшать значение счетчика на 1. Значение счетчика должно быть доступно только через методы объекта, а не напрямую.
+
+        function createCounter(initialValue) {
+
+            let counterValue = initialValue;
+
+            return {
+                increment: function () {
+                    return counterValue += 1;
+                },
+                decrement: function () {
+                    return counterValue -= 1;
+                },
+                getValue: function () {
+                    return counterValue;
+                }
+            }
+        }
+
+        let counter = createCounter(5);
+        console.log(counter.increment());
+        console.log(counter.decrement());
+
+        // 3) Напишите рекурсивную функцию findElementByClass, которая принимает корневой элемент дерева DOM и название класса в качестве аргументов и возвращает первый найденный элемент с указанным классом в этом дереве.
+        // Пример
+        // const rootElement = document.getElementById('root');
+        // const targetElement = findElementByClass(rootElement, 'my-class');
+        // console.log(targetElement);
+
+        let arr = [];
+
+        function findElementByClass(rootElement, classElement) {
+
+            if (rootElement.hasChildNodes()) {
+
+                for (let element of rootElement.children) {
+
+                    if (element.className === classElement) {
+                        arr.push(element);
+
+                        if (arr[0].className !== classElement) {
+                            arr = [];
+                            arr.push(element);
+                        }
+                    }
+                    findElementByClass(element, classElement);
+                }
+            }
+
+            return arr[0];
+        }
+
+        const rootElement = document.getElementById('root');
+        const targetElement = findElementByClass(rootElement, 'my-class');
+        console.log(targetElement);
+
+    </script>
+</body>
+
+</html>
