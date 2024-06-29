@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.center {
+    padding-right: calc(50% - 570px);
+    padding-left: calc(50% - 570px);
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+
+    &__block {
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 400px;
+        height: 600px;
+        background: green;
+        transition: 3s;
+
+        &__text {
+            font-size: 50px;
+            color: white;
+        }
+    }
+}
